@@ -39,6 +39,10 @@ if __name__ == "__main__":
     windowSize = int(sys.argv[5]) #5
     minCount = int(sys.argv[6]) #0
     
+    query = None
+    if len(sys.argv) == 8:
+        query = sys.argv[7]
+    
     spark = None
     
     try:
@@ -60,10 +64,11 @@ if __name__ == "__main__":
         #model = Word2Vec.load(model_name)
         
         ##############testing similarity
-        synonyms = model.findSynonyms('مواليد', 5)
-        
-        for word, cosine_distance in synonyms.collect():
-            print("{}: {}".format(word, cosine_distance))
+        if query != None:
+            synonyms = model.findSynonyms(query, 5)
+            
+            for word, cosine_distance in synonyms.collect():
+                print("{}: {}".format(word, cosine_distance))
         ##################################################
     
     finally:
