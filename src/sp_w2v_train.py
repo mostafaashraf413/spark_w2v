@@ -17,6 +17,7 @@ def read_corpus(dir_path):
     return corpus
 #####################################################################
 
+#this function takes the training parameters, then start the training, after that it returns the trained model.
 #####################################################################
 def train_w2v(inp_df, vectorSize=50, minCount=0, inputCol="text", 
                         outputCol="result", windowSize=5, maxIter=50):
